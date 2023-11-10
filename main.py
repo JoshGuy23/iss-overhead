@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime
+import smtplib
 
 
 def utc_to_cst(hr):
@@ -47,10 +48,26 @@ sunset = utc_to_cst(sunset)
 
 time_now = datetime.now()
 
+
 # If the ISS is close to my current position
 # and it is currently dark
 # Then send me an email to tell me to look up.
 # BONUS: run the code every 60 seconds.
+def is_dark():
+    if time_now.hour < sunrise or time_now.hour > sunset:
+        return True
+    else:
+        return False
 
 
-
+sender = "dwdeathwolf@gmail.com"
+password = "nezinvlcxjckceys"
+if is_dark() and is_close():
+    with smtplib.SMTP(host="smtp.google.com", port=587) as connection:
+        connection.starttls()
+        connection.login(user=sender, password=password)
+        connection.sendmail(
+            from_addr=sender,
+            to_addrs="jhecker2001@gmail.com",
+            msg="Subject:ISS Overhead\n\nThe International Space Station is overhead! Look up!"
+        )
