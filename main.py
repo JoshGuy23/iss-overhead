@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 import smtplib
+import time
 
 
 def utc_to_cst(hr):
@@ -58,12 +59,14 @@ def is_dark():
 
 sender = "dwdeathwolf@gmail.com"
 password = "nezinvlcxjckceys"
-if is_dark() and is_close():
-    with smtplib.SMTP(host="smtp.google.com", port=587) as connection:
-        connection.starttls()
-        connection.login(user=sender, password=password)
-        connection.sendmail(
-            from_addr=sender,
-            to_addrs="jhecker2001@gmail.com",
-            msg="Subject:ISS Overhead\n\nThe International Space Station is overhead! Look up!"
-        )
+while True:
+    time.sleep(60)
+    if is_dark() and is_close():
+        with smtplib.SMTP(host="smtp.google.com", port=587) as connection:
+            connection.starttls()
+            connection.login(user=sender, password=password)
+            connection.sendmail(
+                from_addr=sender,
+                to_addrs="jhecker2001@gmail.com",
+                msg="Subject:ISS Overhead\n\nThe International Space Station is overhead! Look up!"
+            )
