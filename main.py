@@ -50,7 +50,7 @@ time_now = datetime.now()
 # Then send me an email to tell me to look up.
 # BONUS: run the code every 60 seconds.
 def is_dark():
-    if time_now.hour < sunrise or time_now.hour > sunset:
+    if time_now.hour <= sunrise or time_now.hour >= sunset:
         return True
     else:
         return False
