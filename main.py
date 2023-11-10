@@ -21,11 +21,7 @@ iss_longitude = float(data["iss_position"]["longitude"])
 
 # Your position is within +5 or -5 degrees of the ISS position.
 def is_close():
-    latitude_difference = iss_latitude - MY_LAT
-    longitude_difference = iss_longitude - MY_LONG
-    if 5 >= latitude_difference >= -5:
-        return True
-    elif 5 >= longitude_difference >= -5:
+    if MY_LAT + 5 >= iss_latitude >= MY_LAT - 5 and MY_LONG + 5 >= iss_longitude >= MY_LONG - 5:
         return True
     else:
         return False
