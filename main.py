@@ -11,6 +11,7 @@ def utc_to_cst(hr):
 
 MY_LAT = 32.543390  # Your latitude
 MY_LONG = -94.784170  # Your longitude
+MY_EMAIL = "jhecker2001@gmail.com" # Your email address
 
 response = requests.get(url="http://api.open-notify.org/iss-now.json")
 response.raise_for_status()
@@ -67,6 +68,6 @@ while True:
             connection.login(user=sender, password=password)
             connection.sendmail(
                 from_addr=sender,
-                to_addrs="jhecker2001@gmail.com",
+                to_addrs=MY_EMAIL,
                 msg="Subject:ISS Overhead\n\nThe International Space Station is overhead! Look up!"
             )
